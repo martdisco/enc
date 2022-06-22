@@ -1,4 +1,3 @@
-const password = ''
 let encrypted
 let decrypted
 
@@ -45,11 +44,21 @@ function displayDecryptedContents(contents) {
 }
 
 function encrypt(contents) {
+	const password = document.getElementById('text-input').value
+	if(!password) {
+		alert('no password')
+		return
+	}
   var encryptedAES = CryptoJS.AES.encrypt(contents, password);
   return encryptedAES
 }
 
 function decrypt(contents) {
+	const password = document.getElementById('text-input').value
+	if(!password) {
+		alert('no password')
+		return
+	}
 	var decryptedBytes = CryptoJS.AES.decrypt(contents, password);
 	var plaintext = decryptedBytes.toString(CryptoJS.enc.Utf8);
 	return plaintext
@@ -88,3 +97,4 @@ document.getElementById('file-input-encrypted')
   
 document.getElementById('file-input')
   .addEventListener('change', readDecryptedFile, false);
+  
